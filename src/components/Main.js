@@ -31,16 +31,40 @@ export const Main = () => {
         setMoviesToDisplay(moviesToDisplay.filter(movie => movie.id !== movieId))
     }
 
+    // conditional rendering: solution 1 (using an Element variable)
+    let messageNumberMovies = "";
+    if(moviesToDisplay.length > 0){
+        messageNumberMovies = <h1>Number of movies: {moviesToDisplay.length}</h1>;
+    } else {
+        messageNumberMovies = <h1>No movie to display</h1>;
+    }
+
     return (
         <div className="Main">
             <p>Main component</p>
 
-            <h1>Number of movies: {moviesToDisplay.length}</h1>
+            {messageNumberMovies}
 
             {moviesToDisplay.map(movie => {
                 return (
                     <div key={movie.id} className="card">
                         <p>{movie.title}</p>
+                        <p>Rating: {movie.rating}/10</p>
+                        {/* {if(movie.rating>8){}} */}
+                        {/* if-else statements does not translate in JSX, cannot be used directly in the markup */}
+                        { movie.rating > 8 && <p>YOU MUST SEE THIS MOVIE!!!</p>}
+                        {/* 
+                        trick using the logical AND && operator:
+                        it returns the value of the first falsy operand encountered when evaluating from left to right, 
+                        or the value of the last operand if they are all truthy.
+                        */}
+                        {false} {/* renders nothing */}
+                        {/* { movie.imgURL ? <img src={movie.imgURL} /> : <p>No img to display</p>} */}
+                        { movie.imgURL 
+                            ? <img src={movie.imgURL} /> 
+                            : <img src="https://dummyimage.com/182x268/ffffff/000000" />
+                        }
+                        <br />
                         <button onClick={() => deleteMovie(movie.id)}> Delete </button>
                     </div>
                 )
