@@ -1,5 +1,16 @@
 // https://yewtu.be/watch?v=jLS0TkAHvRg
 
+// Hooks
+// useState
+// sueReducer
+// useEffect
+// useContext
+// useRef
+// useMemo
+// useCallback
+// useTransition (latest addition)
+// useDeferredValue (latest addition)
+
 export const ClickHandler = () => {
     const clickHandler = () => {
         console.log("button clicked!")

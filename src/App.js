@@ -1,3 +1,5 @@
+// import React from 'react'; // cf jsconfig.json
+
 import logo from './logo.svg';
 import './App.css';
 
@@ -5,12 +7,12 @@ import { Header } from './components/Header';
 import { Main } from './components/Main';
 import { Footer } from './components/Footer';
 
-// import { ClickHandler } from './components/ClickHandler';
+import { ClickHandler } from './components/ClickHandler';
 
 function App() {
   return (
+    // Dummy // here auto-import / auto-complete works!
     <div className="App">
-
       {/*
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
@@ -29,10 +31,15 @@ function App() {
       */}
 
       <Header />
-      <Main />
-      <Footer />
 
-      {/* <ClickHandler /> */}
+      <ClickHandler />
+
+      <Main />
+
+      <Footer />
+      
+      {/* Dummy // no auto-import / auto-complete in JSX... */}
+      {/* <Dummy // with auto-import / auto-complete in JSX!!! mind the leading "<" */}
 
     </div>
   );
