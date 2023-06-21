@@ -8,6 +8,7 @@ import { Main } from './components/Main';
 import { Footer } from './components/Footer';
 
 import { ClickHandler } from './components/ClickHandler';
+import { ParentComponent } from './components/ParentComponent';
 
 function App() {
   return (
@@ -33,11 +34,12 @@ function App() {
       <Header />
 
       <ClickHandler />
+      <ParentComponent />
 
       <Main />
 
       <Footer />
-      
+
       {/* Dummy // no auto-import / auto-complete in JSX... */}
       {/* <Dummy // with auto-import / auto-complete in JSX!!! mind the leading "<" */}
 

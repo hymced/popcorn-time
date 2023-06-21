@@ -1,3 +1,5 @@
+// there is no syntax for comments in JSON (data-only format), so I added the .old extension
+
 // {
 //     "compilerOptions": {
 //         "resolveJsonModule": true,

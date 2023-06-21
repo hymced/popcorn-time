@@ -12,12 +12,13 @@
 // useDeferredValue (latest addition)
 
 export const ClickHandler = () => {
-    const clickHandler = () => {
-        console.log("button clicked!")
+    const clickHandler = (event, num = 1) => {
+        console.log("button clicked!", num, event)
     }
     return (
         <div>
             <button onClick={clickHandler}> Click! </button>
+            <button onClick={(event) => {clickHandler(event, 2)}}> Click! </button>
         </div>
     )
 }
@@ -30,3 +31,5 @@ export const ClickHandler = () => {
 // create-react-app install react with:
 // - a linter (ESLint) to check for errors/syntax based on rules
 // - a transpiler (Babel) to transform modern JavaScript code, including ES6+ features, into code that can run on older browsers
+
+// https://react.dev/reference/react/useState#updating-state-based-on-the-previous-state
