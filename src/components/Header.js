@@ -4,7 +4,8 @@ import "./Header.css"; // webpack puts it in a general css file in the frontend 
 export const Header = () => {
     return (
         <header className="Header">
-            <h1>Header component</h1>
+            {/* <h1>Header component</h1> */}
+            <h1>Popcorn Time 🍿</h1>
         </header>
     )
 }
