@@ -10,7 +10,13 @@ import { Footer } from './components/Footer';
 import { ClickHandler } from './components/ClickHandler';
 import { ParentComponent } from './components/ParentComponent';
 
+import moviesArray from './data/movies.json';
+import { useState } from 'react';
+
 function App() {
+
+  const [moviesToDisplay, setMoviesToDisplay] = useState(moviesArray);
+
   return (
     // Dummy // here auto-import / auto-complete works!
     <div className="App">
@@ -31,12 +37,17 @@ function App() {
       </header>
       */}
 
-      <Header />
+      <Header numberOfMovies={moviesToDisplay.length} />
 
       <ClickHandler />
       <ParentComponent />
 
-      <Main />
+      <Main listOfMovies={moviesToDisplay} setCallback={setMoviesToDisplay} />
+      {/* 
+      better pattern: 
+      keep the function to delete a movie where is the state variable containing the movies
+      so here
+      */}
 
       <Footer />
 

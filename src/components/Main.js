@@ -20,31 +20,21 @@ import "./Main.css";
 //     },
 // ];
 
-import moviesArray from '../data/movies.json';
-import { useState } from 'react';
+// import moviesArray from '../data/movies.json';
+// import { useState } from 'react';
 import Movie from './Movie';
 
-export const Main = () => {
+export const Main = (props) => {
 
-    const [moviesToDisplay, setMoviesToDisplay] = useState(moviesArray);
+    // const [moviesToDisplay, setMoviesToDisplay] = useState(moviesArray);
 
     const deleteMovie = (movieId) => {
-        setMoviesToDisplay(moviesToDisplay.filter(movie => movie.id !== movieId))
-    }
-
-    // conditional rendering: solution 1 (using an Element variable)
-    let messageNumberMovies = "";
-    if(moviesToDisplay.length > 0){
-        messageNumberMovies = <h1>Number of movies: {moviesToDisplay.length}</h1>;
-    } else {
-        messageNumberMovies = <h1>No movie to display</h1>;
+        props.setCallback(props.listOfMovies.filter(movie => movie.id !== movieId))
     }
 
     return (
         <div className="Main">
             <p>Main component</p>
-
-            {messageNumberMovies}
 
             {
             // TO DO: make a JSX comment block snippet
@@ -74,7 +64,7 @@ export const Main = () => {
             //})}
             }
 
-            {moviesToDisplay.map((movieObj) => {
+            {props.listOfMovies.map((movieObj) => {
                 return <Movie key={movieObj.id} movieDetails={movieObj} deleteCallback={deleteMovie} />
                 // var component = <Component />;
                 // component.props.foo = x // bad
