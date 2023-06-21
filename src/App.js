@@ -16,23 +16,34 @@ import { useState } from 'react';
 function App() {
 
   const [moviesToDisplay, setMoviesToDisplay] = useState(moviesArray);
-  const [title, setTitle] = useState("");
-  const [rating, setRating] = useState("");
+  // const [title, setTitle] = useState("");
+  // const [rating, setRating] = useState("");
+  const [inputs, setInputs] = useState({});
 
   const handleSubmit = (e) => {
     e.preventDefault() // prevent page refresh
     const newMovie = {
       id: "42",
-      title: title,
+      // title: title,
+      title: inputs.title,
       year: 2023,
       genres: ["SciFi"],
-      rating: rating
+      // rating: rating
+      rating: inputs.rating
     }
     const newMoviesToDisplay = [...moviesToDisplay]
     newMoviesToDisplay.unshift(newMovie)
     setMoviesToDisplay(newMoviesToDisplay)
-    // setMoviesToDisplay([newMovie, ...moviesToDisplay]) // directly...
-    setTitle("") // to clear the form
+    // setMoviesToDisplay([newMovie, ...moviesToDisplay]) // or directly...
+    // setTitle("") // to clear the form
+    setInputs({...inputs, title: "", rating: ""})
+  }
+
+  const handleChange = (e) => {
+    let { name, value, min, max } = e.target;
+    if (name === 'rating') value = Math.max(Number(min), Math.min(Number(max), Number(value)))
+    // setInputs(prevState => ({ ...prevState, [e.target.name]: e.target.value }));
+    setInputs(prevState => ({ ...prevState, [e.target.name]: value }));
   }
 
   return (
@@ -69,9 +80,12 @@ function App() {
             <input 
               type="text" 
               name="title" 
-              placeholder="enter the title" 
-              value={title}
-              onChange={(e) => {setTitle(e.target.value)}}
+              placeholder="title?" 
+              // value={title}
+              // onChange={(e) => {setTitle(e.target.value)}}
+              value={inputs.title}
+              onChange={(e) => {handleChange(e)}}
+              
             />
           </label>
 
@@ -80,15 +94,17 @@ function App() {
             <input 
               type="number" 
               name="rating" 
-              placeholder="enter the rating" 
-              value={rating} 
+              placeholder="rating?" 
+              // value={rating} 
+              value={inputs.rating} 
               min={1} // or min="1", but min=1 not possible
               max={10} 
-              onChange={(e) => {
-                let { value, min, max } = e.target;
-                value = Math.max(Number(min), Math.min(Number(max), Number(value)))
-                setRating(value)
-                }}
+              // onChange={(e) => {
+              //   let { value, min, max } = e.target;
+              //   value = Math.max(Number(min), Math.min(Number(max), Number(value)))
+              //   setRating(value)
+              //   }}
+              onChange={(e) => {handleChange(e)}}
             />
           </label>
 
