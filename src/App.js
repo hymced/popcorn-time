@@ -83,7 +83,7 @@ function App() {
               placeholder="title?" 
               // value={title}
               // onChange={(e) => {setTitle(e.target.value)}}
-              value={inputs.title}
+              value={inputs.title || ""}
               onChange={(e) => {handleChange(e)}}
               
             />
@@ -96,7 +96,7 @@ function App() {
               name="rating" 
               placeholder="rating?" 
               // value={rating} 
-              value={inputs.rating} 
+              value={inputs.rating || ""} 
               min={1} // or min="1", but min=1 not possible
               max={10} 
               // onChange={(e) => {
