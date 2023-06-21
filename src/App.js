@@ -16,6 +16,24 @@ import { useState } from 'react';
 function App() {
 
   const [moviesToDisplay, setMoviesToDisplay] = useState(moviesArray);
+  const [title, setTitle] = useState("");
+  const [rating, setRating] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault() // prevent page refresh
+    const newMovie = {
+      id: "42",
+      title: title,
+      year: 2023,
+      genres: ["SciFi"],
+      rating: rating
+    }
+    const newMoviesToDisplay = [...moviesToDisplay]
+    newMoviesToDisplay.unshift(newMovie)
+    setMoviesToDisplay(newMoviesToDisplay)
+    // setMoviesToDisplay([newMovie, ...moviesToDisplay]) // directly...
+    setTitle("") // to clear the form
+  }
 
   return (
     // Dummy // here auto-import / auto-complete works!
@@ -41,6 +59,42 @@ function App() {
 
       <ClickHandler />
       <ParentComponent />
+
+      {/* controlled component */}
+      <section>
+        <form onSubmit={handleSubmit}>
+          
+        <label>
+            Title:
+            <input 
+              type="text" 
+              name="title" 
+              placeholder="enter the title" 
+              value={title}
+              onChange={(e) => {setTitle(e.target.value)}}
+            />
+          </label>
+
+          <label>
+            Rating:
+            <input 
+              type="number" 
+              name="rating" 
+              placeholder="enter the rating" 
+              value={rating} 
+              min={1} // or min="1", but min=1 not possible
+              max={10} 
+              onChange={(e) => {
+                let { value, min, max } = e.target;
+                value = Math.max(Number(min), Math.min(Number(max), Number(value)))
+                setRating(value)
+                }}
+            />
+          </label>
+
+          <button> Create </button>
+        </form>
+      </section>
 
       <Main listOfMovies={moviesToDisplay} setCallback={setMoviesToDisplay} />
       {/* 
