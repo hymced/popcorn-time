@@ -28,8 +28,11 @@ export const Main = (props) => {
 
     // const [moviesToDisplay, setMoviesToDisplay] = useState(moviesArray);
 
-    const deleteMovie = (movieId) => {
-        props.setCallback(props.listOfMovies.filter(movie => movie.id !== movieId))
+    // const deleteMovie = (movieId) => {
+    //     props.setCallback(props.listOfMovies.filter(movie => movie.id !== movieId))
+    // }
+    const deleteMovie = (movieTitle) => {
+        props.setCallback(props.listOfMovies.filter(movie => movie.title !== movieTitle))
     }
 
     return (
@@ -64,8 +67,9 @@ export const Main = (props) => {
             //})}
             }
 
-            {props.listOfMovies.map((movieObj) => {
-                return <Movie key={movieObj.id} movieDetails={movieObj} deleteCallback={deleteMovie} />
+            {props.listOfMovies.map((movieObj, index) => {
+                // return <Movie key={movieObj.id} movieDetails={movieObj} deleteCallback={deleteMovie} />
+                return <Movie key={index} movieDetails={movieObj} deleteCallback={deleteMovie} />
                 // var component = <Component />;
                 // component.props.foo = x // bad
                 // return component;

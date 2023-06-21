@@ -13,7 +13,8 @@ function Movie(props) {
             {props.movieDetails.rating > 8 && <p>RECOMMENDED</p>}
 
             <p>
-                <button onClick={() => { props.deleteCallback(props.movieDetails.id) }}>Delete this movie</button>
+            {/* <button onClick={() => { props.deleteCallback(props.movieDetails.id) }}>Delete this movie</button> */}
+            <button onClick={() => { props.deleteCallback(props.movieDetails.title) }}>Delete this movie</button>
             </p>
         </div>
     );
