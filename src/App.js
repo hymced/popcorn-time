@@ -11,7 +11,13 @@ import { ClickHandler } from './components/ClickHandler';
 import { ParentComponent } from './components/ParentComponent';
 
 import moviesArray from './data/movies.json';
-import { useState } from 'react';
+import { useState } from 'react'; 
+// note: 
+// JavaScript bundler (e.g. webpack) ensures that the code is bundled efficiently
+// during the bundling process, the bundler analyzes your code and creates a dependency graph
+// it detects shared dependencies among multiple components and performs optimizations to avoid duplicating the code
+// shared dependencies are extracted in separate chunks or modules, then loaded once and reused by the components that depend on them
+// this way, the size of the project is not significantly affected by importing the same module multiple times
 
 function App() {
 
