@@ -2,7 +2,8 @@ import "./Header.css"; // webpack puts it in a general css file in the frontend 
 // but yet a separated css here so that the component is self-sustainable
 
 import axios from 'axios';
-import { useState } from 'react';
+// import { useState } from 'react';
+import { useState , useEffect } from 'react';
 
 export const Header = (props) => {
 
@@ -32,6 +33,19 @@ export const Header = (props) => {
     //     .catch(e => console.log(e))
     // // infinite loop rendering the component!!!
 
+    let [numberOfCharactersAPI, setNumberOfCharactersAPI] = useState();
+    useEffect(() => {
+        const baseUrl = "https://ih-crud-api.herokuapp.com"
+        axios
+            .get(`${baseUrl}/characters`)
+            .then(response => {
+                console.log(response.data);
+                setNumberOfCharactersAPI(response.data.length);
+            })
+            .catch(e => console.log(e))
+    }, [])
+    // https://stackblitz.com/edit/js-zbhasa?file=index.js
+
     // conditional rendering: solution 1 (using an Element variable)
     let messageNumberMovies = "";
     if(props.numberOfMovies > 0){
@@ -45,7 +59,7 @@ export const Header = (props) => {
             {/* <h1>Header component</h1> */}
             <h1>Popcorn Time 🍿</h1>
             {messageNumberMovies}
-            {/* <p>Number of characters in API: {numberOfCharactersAPI}</p> */}
+            <p>Number of characters in API: {numberOfCharactersAPI}</p>
         </header>
     )
 }
