@@ -12,6 +12,7 @@ import { ParentComponent } from './components/ParentComponent';
 
 import moviesArray from './data/movies.json';
 import { useState } from 'react'; 
+import AddMovie from './components/AddMovie';
 // note: 
 // JavaScript bundler (e.g. webpack) ensures that the code is bundled efficiently
 // during the bundling process, the bundler analyzes your code and creates a dependency graph
@@ -76,6 +77,8 @@ function App() {
 
       <ClickHandler />
       <ParentComponent />
+
+      <AddMovie />
 
       {/* controlled component */}
       <section>
